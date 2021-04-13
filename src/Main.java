@@ -1,5 +1,5 @@
 
-import java.io.* ; // Gestiona las operaciones de entrada y de salida
+import java.io.*; // Gestiona las operaciones de entrada y de salida
 import java.util.Scanner;
 
 public class Main {
@@ -44,32 +44,26 @@ public class Main {
                     System.out.println(fich.readUTF());
                     System.out.println(fich.readUTF());
             }
-
-
         } else {
             System.out.println("El numero que introduces no existe como departamento");
         }
-
-
     }
 
     // Metodo para introducir los datos dentro del fichero
     public static void introducirDatos(int departamento, String nombre, String localidad, DataOutputStream escritura) throws IOException {
         escritura.writeInt(departamento);
-        escritura.writeUTF(nombre.toString());
-        escritura.writeUTF(localidad.toString());
+        escritura.writeUTF(nombre);
+        escritura.writeUTF(localidad);
     }
 
     public static boolean exists(int nuevoId,DataInputStream lectura) throws IOException {
         boolean buleano=false;
-        int prueba=0;
+        int prueba=0; //variable que activa el booleano
         try{
             while (lectura.available()>0) {
                 if(lectura.readInt()==nuevoId) {
                     prueba++;
-                    System.out.println("--------------------------\nNUMERO DE DEPARTAMENTO: "+nuevoId+"\nNOMBRE: "+lectura.readUTF()+"\nLOCALIDAD: "+lectura.readUTF());
-
-
+                    System.out.println("--------------------------\nNumero de Departamento: "+nuevoId+"\nNombre: "+lectura.readUTF()+"\nLocalidad: "+lectura.readUTF());
                 }else {
                     lectura.readUTF();
                     lectura.readUTF();
